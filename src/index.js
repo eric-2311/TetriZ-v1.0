@@ -62,7 +62,7 @@ const colors = [
     'green'
 ]
 
-// Randomly selects a tetrimino to play
+// Randomly selects a tetrimino to play and checks for gameover
 function tetriminoReset() {
     const tetriminos = ['s', 'l', 'i', 'o', 'j', 'z', 't'];
     player.matrix = generateTetrimino(tetriminos[tetriminos.length * Math.random() | 0])
@@ -71,6 +71,7 @@ function tetriminoReset() {
 
     if (collision(gameGrid, player)) {
         gameGrid.forEach(row => row.fill(0));
+        player.gameOver = true;
         player.score = 0
         updateScore()
     }
@@ -84,6 +85,7 @@ function createGrid(width, height) {
     while (height--) {
         matrix.push(new Array(width).fill(0));
     }
+
     // console.log(matrix)
     return matrix;
 }
@@ -94,6 +96,7 @@ function placeTTetrimino(matrix, offset) {
         row.forEach((col, x) => {
             if (col !== 0) {
                 ctx.fillStyle = colors[col];
+                // ctx.strokeStyle(x + offset.x, y + offset.y, 1, 1);
                 ctx.fillRect(x + offset.x, y + offset.y, 1, 1);
             }
         })
@@ -105,7 +108,9 @@ const player = {
     pos: {x: 5, y: 5},
     matrix: null,
     score: 0,
-    music: false
+    music: false,
+    gameOver: false,
+    time: 0
 }
 
 // Default grid
@@ -126,6 +131,7 @@ function merge(gameGrid, player) {
 function draw() {
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // ctx.strokeRect(0, 0, player.pos.y, player.pos.x)
 
     placeTTetrimino(gameGrid, {x: 0, y: 0})
     placeTTetrimino(player.matrix, player.pos)
@@ -141,11 +147,17 @@ function update(time = 0) {
     currentTime = time;
     dropCounter += timeChange;
 
+    if (player.gameOver) {
+        // gameOver()
+    }
+
     if (dropCounter > dropInterval) {
         tetriminoDrop()
         dropCounter = 0;
     }
 
+    updateTime();
+    timer()
     draw();
     requestAnimationFrame(update);
 }
@@ -169,6 +181,10 @@ function collision(gameGrid, player) {
 // Default tetrimino action
 function tetriminoDrop() {
     player.pos.y++;
+    // if (player.gameOver) {
+    //     gameOver()
+    // }
+
     if (collision(gameGrid, player)) {
         player.pos.y--;
         // debugger
@@ -253,7 +269,7 @@ document.addEventListener("keydown", e => {
     } else if (e.keyCode === 80) {
         playMusic()
     } else if (e.keyCode === 32) {
-        gameStart()
+        gameStart();
     }
 })
 
@@ -270,9 +286,28 @@ function playMusic() {
     
 }
 
+function updateTime() {
+    this.current = new Date();
+    player.time = Math.round((this.current - this.currentTime) / 1000)
+    // setInterval(() => {
+    //     // debugger
+    //     player.time += 1
+    //     // debugger
+    // }, 1000)
+}
+
+function timer() {
+    document.getElementById('timer').innerText = `${player.time} and counting..`;
+    // updateTime()
+}
+
 function gameStart() {
+    this.currentTime = new Date();
+
     playMusic()
     tetriminoReset()
     updateScore()
+    // timer()
+    // updateTime()
     update()
 }

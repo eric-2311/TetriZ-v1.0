@@ -43,6 +43,10 @@ canvas {
     font-family: 'Permanent Marker', cursive;
 }
 
+.space {
+    border: 1px dotted white;
+}
+
 .title {
     font-family: 'Permanent Marker', cursive;
     font-size: 54px;
@@ -50,6 +54,11 @@ canvas {
     font-weight: bold;
     color: red;
     /* text-align: center; */
+}
+
+#timer {
+    font-family: 'Permanent Marker', cursive;
+    color: red;
 }
 
 .instructions {
