@@ -1,0 +1,61 @@
+body {
+    background-image: url(/dist/zombs.jpg);
+}
+
+canvas {
+    border: 1px solid red;
+    opacity: 0.7;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+}
+
+#score {
+    color: red;
+    font-family: 'Permanent Marker', cursive;
+    font-weight: bold;
+    font-size: 54px;
+    /* text-align: center; */
+}
+
+.header {
+    display: flex;
+    /* width: 300px; */
+    /* align-self: center; */
+    flex-direction: column;
+    align-items: center;
+    /* align-content: center; */
+    
+    /* margin: 0; */
+}
+
+.description {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    height: 500px;
+    width: 300px;
+    color: red;
+    font-size: 28px;
+    margin-left: 40px;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 54px;
+    text-decoration: underline;
+    font-weight: bold;
+    color: red;
+    /* text-align: center; */
+}
+
+.instructions {
+    font-size: 16px;
+    padding: 10px;
+    background-color: black;
+    border: 1px solid red;
+    opacity: 0.8;
+}
