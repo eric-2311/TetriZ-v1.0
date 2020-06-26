@@ -72,7 +72,9 @@ function tetriminoReset() {
     if (collision(gameGrid, player)) {
         gameGrid.forEach(row => row.fill(0));
         player.gameOver = true;
+        player.time = 0;
         player.score = 0
+        updateTime()
         updateScore()
     }
 }
@@ -289,7 +291,7 @@ function updateTime() {
 }
 
 function timer() {
-    document.getElementById('timer').innerText = `${player.time} and counting..`;
+    document.getElementById('timer').innerText = `${player.time} seconds and counting..`;
 }
 
 function gameStart() {
