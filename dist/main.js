@@ -1,2 +1,100 @@
-!function(e){var n={};function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{enumerable:!0,get:r})},t.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},t.t=function(e,n){if(1&n&&(e=t(e)),8&n)return e;if(4&n&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(t.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&n&&"string"!=typeof e)for(var o in e)t.d(r,o,function(n){return e[n]}.bind(null,o));return r},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},t.p="/dist/",t(t.s=0)}([function(e,n){var t=document.getElementById("grid"),r=t.getContext("2d");r.scale(20,20);var o=[null,"purple","orange","yellow","blue","cyan","red","green"];function i(){var e,n=["s","l","i","o","j","z","t"];c.matrix="t"===(e=n[n.length*Math.random()|0])?[[0,0,0],[1,1,1],[0,1,0]]:"o"===e?[[3,3],[3,3]]:"l"===e?[[0,2,0],[0,2,0],[0,2,2]]:"j"===e?[[0,4,0],[0,4,0],[4,4,0]]:"i"===e?[[0,5,0,0],[0,5,0,0],[0,5,0,0],[0,5,0,0]]:"z"===e?[[6,6,0],[0,6,6],[0,0,0]]:"s"===e?[[0,7,7],[7,7,0],[0,0,0]]:void 0,c.pos.y=0,c.pos.x=f[0].length/2-1,m(f,c)&&(f.forEach((function(e){return e.fill(0)})),c.gameOver=!0,c.time=0,c.score=0,b(),h())}function u(e,n){e.forEach((function(e,t){e.forEach((function(e,i){0!==e&&(r.fillStyle=o[e],r.fillRect(i+n.x,t+n.y,1,1))}))}))}var c={pos:{x:5,y:5},matrix:null,score:0,music:!1,gameOver:!1,time:0},f=function(e,n){for(var t=[];n--;)t.push(new Array(e).fill(0));return t}(12,20);function a(){r.fillStyle="#000",r.fillRect(0,0,t.width,t.height),u(f,{x:0,y:0}),u(c.matrix,c.pos)}var l=0,s=0;function d(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,n=e-s;s=e,l+=n,c.gameOver,l>1e3&&(y(),l=0),b(),E(),a(),requestAnimationFrame(d)}function m(e,n){for(var t=[n.matrix,n.pos],r=t[0],o=t[1],i=0;i<r.length;i++)for(var u=0;u<r[i].length;u++)if(0!==r[i][u]&&0!==(e[i+o.y]&&e[i+o.y][u+o.x]))return!0;return!1}function y(){c.pos.y++,m(f,c)&&(c.pos.y--,function(e,n){n.matrix.forEach((function(t,r){t.forEach((function(t,o){0!==t&&(e[r+n.pos.y][o+n.pos.x]=t)}))}))}(f,c),i(),function(){var e=1;e:for(var n=f.length-1;n>0;n--){for(var t=0;t<f[n].length;t++)if(0===f[n][t])continue e;var r=f.splice(n,1)[0].fill(0);f.unshift(r),n++,c.score+=10*e,e*=2}}(),h()),l=0}function p(e){c.pos.x+=e,m(f,c)&&(c.pos.x-=e)}function v(e,n){for(var t=0;t<e.length;t++)for(var r=0;r<t;r++){var o=[e[t][r],e[r][t]];e[r][t]=o[0],e[t][r]=o[1]}n>0?e.forEach((function(e){return e.reverse()})):e.reverse()}function g(e){v(c.matrix,e);for(var n=c.pos.x,t=1;m(f,c);)if(c.pos.x+=t,(t=-(t+(t>0?1:-1)))>c.matrix[0].length)return v(c.matrix,-e),void(c.pos.x=n)}function h(){document.getElementById("score").innerText=c.score}function x(){var e=document.getElementById("song");c.music?(e.pause(),c.music=!1):(e.play(),c.music=!0)}function b(){this.current=new Date,c.time=Math.round((this.current-this.currentTime)/1e3)}function E(){document.getElementById("timer").innerText="".concat(c.time," seconds and counting..")}document.addEventListener("keydown",(function(e){37===e.keyCode?p(-1):39===e.keyCode?p(1):40===e.keyCode?y():90===e.keyCode?g(-1):88===e.keyCode?g(1):80===e.keyCode?x():32===e.keyCode&&function(){this.currentTime=new Date,x(),i(),h(),d()}()}))}]);
-//# sourceMappingURL=main.js.map
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("const canvas = document.getElementById('grid');\nconst ctx = canvas.getContext('2d');\nctx.scale(20, 20);\n\n// Tetriminos\n// 0 is a falsey value\nfunction generateTetrimino(type) {\n    if (type === 't') {\n        return [\n            [0, 0, 0],\n            [1, 1, 1],\n            [0, 1, 0]\n        ]\n    } else if (type === 'o') {\n        return [\n            [3, 3],\n            [3, 3]\n        ]\n    } else if (type === 'l') {\n        return [\n            [0, 2, 0],\n            [0, 2, 0],\n            [0, 2, 2]\n        ]\n    } else if (type === 'j') {\n        return [\n            [0, 4, 0],\n            [0, 4, 0],\n            [4, 4, 0]\n        ]\n    } else if (type === 'i') {\n        return [\n            [0, 5, 0, 0],\n            [0, 5, 0, 0],\n            [0, 5, 0, 0],\n            [0, 5, 0, 0],\n        ]\n    } else if (type === 'z') {\n        return [\n            [6, 6, 0],\n            [0, 6, 6],\n            [0, 0, 0]\n        ]\n    } else if (type === 's') {\n        return [\n            [0, 7, 7],\n            [7, 7, 0],\n            [0, 0, 0]\n        ]\n    }\n}\n\n// Array of all tetriminos\nconst colors = [\n    null, \n    'purple',\n    'orange',\n    'yellow',\n    'blue',\n    'cyan',\n    'red',\n    'green'\n]\n\n// Randomly selects a tetrimino to play and checks for gameover\nfunction tetriminoReset() {\n    const tetriminos = ['s', 'l', 'i', 'o', 'j', 'z', 't'];\n    player.matrix = generateTetrimino(tetriminos[tetriminos.length * Math.random() | 0])\n    player.pos.y = 0;\n    player.pos.x = (gameGrid[0].length / 2) - 1;\n\n    if (collision(gameGrid, player)) {\n        gameGrid.forEach(row => row.fill(0));\n        player.gameOver = true;\n        player.time = 0;\n        player.score = 0\n        updateTime()\n        updateScore()\n    }\n}\n\n// Render game grid\nfunction createGrid(width, height) {\n    const matrix = [];\n\n    // debugger\n    while (height--) {\n        matrix.push(new Array(width).fill(0));\n    }\n\n    // console.log(matrix)\n    return matrix;\n}\n\n// Coloring in tetrimino positions on grid\nfunction placeTTetrimino(matrix, offset) {\n    matrix.forEach((row, y) => {\n        row.forEach((col, x) => {\n            if (col !== 0) {\n                ctx.fillStyle = colors[col];\n                // ctx.strokeStyle(x + offset.x, y + offset.y, 1, 1);\n                ctx.fillRect(x + offset.x, y + offset.y, 1, 1);\n            }\n        })\n    })\n}\n\n// Player object\nconst player = {\n    pos: {x: 5, y: 5},\n    matrix: null,\n    score: 0,\n    music: false,\n    gameOver: false,\n    time: 0\n}\n\n// Default grid\nconst gameGrid = createGrid(12, 20)\n\n// Maps tetriminos to game grid\nfunction merge(gameGrid, player) {\n    player.matrix.forEach((row, y) => {\n        row.forEach((col, x) => {\n            if (col !== 0) {\n                gameGrid[y + player.pos.y][x + player.pos.x] = col;\n            }\n        })\n    })\n}\n\n// Render canvas\nfunction draw() {\n    ctx.fillStyle = '#000';\n    ctx.fillRect(0, 0, canvas.width, canvas.height);\n    // ctx.strokeRect(0, 0, player.pos.y, player.pos.x)\n\n    placeTTetrimino(gameGrid, {x: 0, y: 0})\n    placeTTetrimino(player.matrix, player.pos)\n}\n\nlet dropCounter = 0;\nlet dropInterval = 500;\nlet currentTime = 0;\n\n// Animate\nfunction update(time = 0) {\n    const timeChange = time - currentTime;\n    currentTime = time;\n    dropCounter += timeChange;\n\n    // console.log(time)\n    // console.log(currentTime);\n    // console.log(timeChange);\n    // console.log(dropCounter)\n\n    if (player.gameOver) {\n        // gameOver()\n    }\n\n    if (dropCounter > dropInterval) {\n        tetriminoDrop()\n        dropCounter = 0;\n    }\n\n    updateTime();\n    timer()\n    draw();\n    requestAnimationFrame(update);\n}\n\n// Collision check for bottom of grid\nfunction collision(gameGrid, player) {\n    const [m, o] = [player.matrix, player.pos];\n\n    for (let y = 0; y < m.length; y++) {\n        for (let x = 0; x < m[y].length; x++) {\n            // debugger\n            if (m[y][x] !== 0 && (gameGrid[y + o.y] && gameGrid[y + o.y][x + o.x]) !== 0) {\n                // debugger\n                return true;\n            }\n        }\n    }\n    return false;\n}\n\n// Default tetrimino action\nfunction tetriminoDrop() {\n    player.pos.y++;\n\n    if (collision(gameGrid, player)) {\n        player.pos.y--;\n        // debugger\n        merge(gameGrid, player);\n        tetriminoReset();\n        lineClear();\n        updateScore()\n    }\n    dropCounter = 0;\n}\n\nfunction tetriminoMove(dir) {\n    player.pos.x += dir;\n    if (collision(gameGrid, player)) {\n        player.pos.x -= dir;\n    }\n}\n\nfunction rotate(matrix, dir) {\n    for (let y = 0; y < matrix.length; y++) {\n        for (let x = 0; x < y; x++) {\n            [matrix[x][y], matrix[y][x]] = [matrix[y][x], matrix[x][y]]\n        }\n    }\n\n    if (dir > 0) {\n        matrix.forEach(row => row.reverse());\n    } else {\n        matrix.reverse()\n    }\n}\n\nfunction tetriminoRotate(dir) {\n    rotate(player.matrix, dir);\n    const pos = player.pos.x;\n    let offset = 1;\n\n    while (collision(gameGrid, player)) {\n        player.pos.x += offset;\n        offset = -(offset + (offset > 0 ? 1 : -1))\n\n        if (offset > player.matrix[0].length) {\n            rotate(player.matrix, -dir);\n            player.pos.x = pos;\n            return;\n        }\n    }\n}\n\nfunction lineClear() {\n    let rowCount = 1;\n\n    outer: for (let y = gameGrid.length - 1; y > 0; y--) {\n        for (let x = 0; x < gameGrid[y].length; x++) {\n            if (gameGrid[y][x] === 0) {\n                continue outer;\n            }\n        }\n        const row = gameGrid.splice(y, 1)[0].fill(0);\n        gameGrid.unshift(row);\n        y++;\n        player.score += rowCount * 10;\n        rowCount *= 2;\n    }\n}\n\nfunction updateScore() {\n    document.getElementById('score').innerText = player.score\n}\n\ndocument.addEventListener(\"keydown\", e => {\n    if (e.keyCode === 37) {\n        tetriminoMove(-1)\n    } else if (e.keyCode === 39) {\n        tetriminoMove(1);\n    } else if (e.keyCode === 40) {\n        tetriminoDrop();\n    } else if (e.keyCode === 90) {\n        tetriminoRotate(-1);\n    } else if (e.keyCode === 88) {\n        tetriminoRotate(1);\n    } else if (e.keyCode === 80) {\n        playMusic()\n    } else if (e.keyCode === 32) {\n        gameStart();\n    }\n})\n\nfunction playMusic() {\n    const music = document.getElementById('song');\n\n    if (!player.music) {\n        music.play();\n        player.music = true;\n    } else {\n        music.pause();\n        player.music = false;\n    }\n    \n}\n\nfunction updateTime() {\n    this.current = new Date();\n    player.time = Math.round((this.current - this.currentTime) / 1000)\n}\n\nfunction timer() {\n    document.getElementById('timer').innerText = `${player.time} seconds and counting..`;\n}\n\nfunction gameStart() {\n    this.currentTime = new Date();\n\n    playMusic()\n    tetriminoReset()\n    updateScore()\n    update()\n}\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ })
+
+/******/ });

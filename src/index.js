@@ -140,7 +140,7 @@ function draw() {
 }
 
 let dropCounter = 0;
-let dropInterval = 1000;
+let dropInterval = 500;
 let currentTime = 0;
 
 // Animate
@@ -148,6 +148,11 @@ function update(time = 0) {
     const timeChange = time - currentTime;
     currentTime = time;
     dropCounter += timeChange;
+
+    // console.log(time)
+    // console.log(currentTime);
+    // console.log(timeChange);
+    // console.log(dropCounter)
 
     if (player.gameOver) {
         // gameOver()
