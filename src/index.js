@@ -181,9 +181,6 @@ function collision(gameGrid, player) {
 // Default tetrimino action
 function tetriminoDrop() {
     player.pos.y++;
-    // if (player.gameOver) {
-    //     gameOver()
-    // }
 
     if (collision(gameGrid, player)) {
         player.pos.y--;
@@ -289,16 +286,10 @@ function playMusic() {
 function updateTime() {
     this.current = new Date();
     player.time = Math.round((this.current - this.currentTime) / 1000)
-    // setInterval(() => {
-    //     // debugger
-    //     player.time += 1
-    //     // debugger
-    // }, 1000)
 }
 
 function timer() {
     document.getElementById('timer').innerText = `${player.time} and counting..`;
-    // updateTime()
 }
 
 function gameStart() {
@@ -307,7 +298,5 @@ function gameStart() {
     playMusic()
     tetriminoReset()
     updateScore()
-    // timer()
-    // updateTime()
     update()
 }
