@@ -83,12 +83,10 @@ function tetriminoReset() {
 function createGrid(width, height) {
     const matrix = [];
 
-    // debugger
     while (height--) {
         matrix.push(new Array(width).fill(0));
     }
 
-    // console.log(matrix)
     return matrix;
 }
 
@@ -98,7 +96,6 @@ function placeTTetrimino(matrix, offset) {
         row.forEach((col, x) => {
             if (col !== 0) {
                 ctx.fillStyle = colors[col];
-                // ctx.strokeStyle(x + offset.x, y + offset.y, 1, 1);
                 ctx.fillRect(x + offset.x, y + offset.y, 1, 1);
             }
         })
@@ -133,7 +130,6 @@ function merge(gameGrid, player) {
 function draw() {
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    // ctx.strokeRect(0, 0, player.pos.y, player.pos.x)
 
     placeTTetrimino(gameGrid, {x: 0, y: 0})
     placeTTetrimino(player.matrix, player.pos)
@@ -148,15 +144,6 @@ function update(time = 0) {
     const timeChange = time - currentTime;
     currentTime = time;
     dropCounter += timeChange;
-
-    // console.log(time)
-    // console.log(currentTime);
-    // console.log(timeChange);
-    // console.log(dropCounter)
-
-    if (player.gameOver) {
-        // gameOver()
-    }
 
     if (dropCounter > dropInterval) {
         tetriminoDrop()
@@ -175,9 +162,7 @@ function collision(gameGrid, player) {
 
     for (let y = 0; y < m.length; y++) {
         for (let x = 0; x < m[y].length; x++) {
-            // debugger
             if (m[y][x] !== 0 && (gameGrid[y + o.y] && gameGrid[y + o.y][x + o.x]) !== 0) {
-                // debugger
                 return true;
             }
         }
@@ -191,7 +176,6 @@ function tetriminoDrop() {
 
     if (collision(gameGrid, player)) {
         player.pos.y--;
-        // debugger
         merge(gameGrid, player);
         tetriminoReset();
         lineClear();
